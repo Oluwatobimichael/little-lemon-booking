@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
+import BookingForm from './components/BookingForm';
+import ReservationList from './components/ReservationList';
 
 function App() {
+  const [reservations, setReservations] = useState([]);
+
+  const addReservation = (reservation) => {
+    setReservations([...reservations, reservation]);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Little Lemon Restaurant</h1>
+      <BookingForm onAddReservation={addReservation} />
+      <ReservationList reservations={reservations} />
     </div>
   );
 }
